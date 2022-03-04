@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-deployment
+  namespace: spring-boot
+  labels:
+    app: helloworld
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - image: mukulmantosh/spring-boot:latest
+          imagePullPolicy: Always
+          name: spring-boot-container
+          ports:
+            - containerPort: 8080
+              name: spring-boot-app
